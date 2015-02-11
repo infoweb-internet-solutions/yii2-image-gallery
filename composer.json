@@ -1,0 +1,31 @@
+{
+    "name": "infoweb-internet-solutions/yii2-image-gallery",
+    "description": "Yii2 image gallery",
+    "keywords": ["yii2", "yii2-image-gallery", "infoweb", "image", "gallery"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/infoweb-internet-solutions/yii2-image-gallery/issues?state=open",
+        "source": "https://github.com/infoweb-internet-solutions/yii2-image-gallery"
+    },
+    "authors": [
+        {
+            "name": "Fabio Maggio",
+            "email": "fabio@infoweb.be",
+            "homepage": "https://github.com/fabiomaggio"
+        },
+        {
+            "name": "Ruben Heymans",
+            "email": "ruben@infoweb.be",
+            "homepage": "http://www.infoweb.be/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "infoweb\\gallery\\": ""
+        }
+    }
+}
