@@ -7,7 +7,6 @@ foreach (Yii::$app->params['languages'] as $languageId => $languageName) {
     $tabs[] = [
         'label' => $languageName,
         'content' => $this->render('_default_language_tab', ['model' => $model->getTranslation($languageId), 'form' => $form]),
-        'options' => ['class' => 'fade']
     ];
 }
 

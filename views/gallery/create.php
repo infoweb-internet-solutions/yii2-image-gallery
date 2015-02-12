@@ -1,21 +1,21 @@
 <?php
 
 use yii\helpers\Html;
-use infoweb\catalogue\CatalogueAsset;
+use infoweb\gallery\GalleryAsset;
 
 /* @var $this yii\web\View */
-/* @var $model infoweb\catalogue\models\product\Product */
+/* @var $model infoweb\gallery\models\Gallery */
 
-$this->title = Yii::t('ecommerce', 'Create {modelClass}', [
-    'modelClass' => 'Product',
+$this->title = Yii::t('infoweb/cms', 'Create {modelClass}', [
+    'modelClass' => 'Gallery',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('ecommerce', 'Products'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-CatalogueAsset::register($this);
+GalleryAsset::register($this);
 
 ?>
-<div class="product-create">
+<div class="gallery-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

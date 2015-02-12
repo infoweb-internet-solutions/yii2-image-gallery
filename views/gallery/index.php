@@ -4,28 +4,27 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\helpers\Url;
 
-use infoweb\catalogue\assets\ProductAsset;
+use infoweb\gallery\GalleryAsset;
 
 /* @var $this yii\web\View */
-/* @var $searchModel infoweb\catalogue\models\search\ProductSearch */
+/* @var $searchModel infoweb\gallery\models\GallerySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('ecommerce', 'Products');
+$this->title = Yii::t('infoweb/gallery', 'Galleries');
 $this->params['breadcrumbs'][] = $this->title;
 
-ProductAsset::register($this);
+GalleryAsset::register($this);
 ?>
-<div class="product-index">
+<div class="gallery-index">
 
     <?php // Title ?>
     <h1>
         <?= Html::encode($this->title) ?>
 
-        <?= Html::a('(' . Yii::t('ecommerce', 'Show as structured list') . ')', ['tree'], ['class' => 'small text-muted']); ?>
         <?php // Buttons ?>
         <div class="pull-right">
             <?= Html::a(Yii::t('app', 'Create {modelClass}', [
-                'modelClass' => Yii::t('ecommerce', 'Product'),
+                'modelClass' => Yii::t('infoweb/gallery', 'Gallery'),
             ]), ['create'], ['class' => 'btn btn-success']) ?>
         </div>
     </h1>
@@ -93,6 +92,7 @@ ProductAsset::register($this);
         // @todo Create scrollingTop constant/setting
         'floatHeaderOptions' => ['scrollingTop' => 88],
         'hover' => true,
+        //'resizableColumns' => false,
     ]); ?>
 
 </div>

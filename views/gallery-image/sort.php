@@ -5,8 +5,8 @@ use infoweb\cms\assets\ImageAsset;
 ImageAsset::register($this);
 
 $this->title = Yii::t('app', 'Sort');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/ecommerce', 'Products'), 'url' => ['/catalogue/product']];
-$this->params['breadcrumbs'][] = ['label' => $product->name, 'url' => ['/catalogue/product/update', 'id' => $product->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['/gallery/gallery']];
+$this->params['breadcrumbs'][] = ['label' => $gallery->name, 'url' => ['/gallery/gallery/update', 'id' => $gallery->id]];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/cms', 'Images'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 

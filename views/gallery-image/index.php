@@ -4,15 +4,14 @@ use yii\helpers\Html;
 use kartik\widgets\FileInput;
 use yii\widgets\ActiveForm;
 use kartik\grid\GridView;
-use yii\widgets\Pjax;
 use infoweb\cms\assets\ImageAsset;
 use yii\helpers\Url;
 
 ImageAsset::register($this);
 
 $this->title = Yii::t('infoweb/cms', 'Images');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/ecommerce', 'Products'), 'url' => ['/catalogue/product']];
-$this->params['breadcrumbs'][] = ['label' => $product->name, 'url' => ['/catalogue/product/update', 'id' => $product->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['/gallery/gallery']];
+$this->params['breadcrumbs'][] = ['label' => $gallery->name, 'url' => ['/gallery/gallery/update', 'id' => $gallery->id]];
 $this->params['breadcrumbs'][] = $this->title;
 
 // Render growl messages
@@ -24,11 +23,11 @@ $this->render('_growl_messages');
 
     <h1><?= Yii::t('app', 'Add {modelClass}', ['modelClass' => strtolower(Yii::t('infoweb/cms', 'Images'))] ) ?></h1>
 
-    <?php $form = ActiveForm::begin(['action' => ['/catalogue/product-image/upload'], 'options' => [ 'class' => 'image-upload-form', 'enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['action' => ['/gallery/gallery-image/upload'], 'options' => [ 'class' => 'image-upload-form', 'enctype' => 'multipart/form-data']]); ?>
 
-    <?php if ($product->hasErrors()) { //it is necessary to see all the errors for all the files. @todo Show growl message
+    <?php if ($gallery->hasErrors()) { //it is necessary to see all the errors for all the files. @todo Show growl message
         echo '<pre>';
-        print_r($product->getErrors());
+        print_r($gallery->getErrors());
         echo '</pre>';
     } ?>
 

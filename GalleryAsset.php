@@ -18,7 +18,6 @@ class GalleryAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'infoweb\cms\CMSAsset',
-        //'infoweb\gallery\assets\NestableAsset',
+        'infoweb\gallery\assets\BlueimpGalleryAsset',
     ];
 }

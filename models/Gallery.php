@@ -81,7 +81,7 @@ class Gallery extends ActiveRecord
      */
     public function getTranslations()
     {
-        return $this->hasMany(Lang::className(), ['product_id' => 'id'])->from(['translations' => Lang::tableName()]);
+        return $this->hasMany(Lang::className(), ['gallery_id' => 'id'])->from(['translations' => Lang::tableName()]);
     }
 
 }

@@ -1,0 +1,17 @@
+
+.blueimp-gallery>.indicator>li {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+}
+
+.blueimp-gallery > .description {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    color: #fff;
+}
+
+.blueimp-gallery-controls > .description {
+    display: block;
+}

@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use infoweb\gallery\models\Gallery;
 
 /**
- * ProductSearch represents the model behind the search form about `infoweb\catalogue\models\product\Product`.
+ * GallerySearch represents the model behind the search form about `infoweb\gallery\models\Gallery`.
  */
 class GallerySearch extends Gallery
 {

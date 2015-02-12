@@ -1,22 +1,19 @@
 <?php
 
 use yii\helpers\Html;
-use infoweb\catalogue\CatalogueAsset;
 
 /* @var $this yii\web\View */
-/* @var $model infoweb\catalogue\models\product\Product */
+/* @var $model infoweb\gallery\models\Gallery */
 
-$this->title = Yii::t('ecommerce', 'Update {modelClass}', [
-    'modelClass' => 'Product',
+$this->title = Yii::t('infoweb/cms', 'Update {modelClass}', [
+    'modelClass' => 'Gallery',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('ecommerce', 'Products'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['update', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('ecommerce', 'Update');
-
-CatalogueAsset::register($this);
+$this->params['breadcrumbs'][] = Yii::t('infoweb/cms', 'Update');
 
 ?>
-<div class="product-update">
+<div class="gallery-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
