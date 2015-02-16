@@ -43,22 +43,15 @@ class GallerySearch extends Gallery
     {
         $query = Gallery::find()->joinWith(['translations'])->where(['language' => Yii::$app->language]);
 
-        // Join the entity model as a relation
-        $query->joinWith(['translations']);
+        $query->orderBy('position');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            //'sort' => ['defaultOrder' => ['manufacturer' => SORT_ASC]],
+            'sort' => false,
             'pagination' => [
                 'pageSize' => 50,
             ],
         ]);
-
-        // enable sorting for the related column
-        $dataProvider->sort->attributes['name'] = [
-            'asc' => ['translations.name' => SORT_ASC],
-            'desc' => ['translations.name' => SORT_DESC],
-        ];
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;

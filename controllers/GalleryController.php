@@ -51,6 +51,21 @@ class GalleryController extends Controller
     }
 
     /**
+     * Orders the model.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionOrder()
+    {
+        $post = Yii::$app->request->post();
+
+        if (isset($post['key'], $post['pos'])) {
+            $this->findModel($post['key'])->order($post['pos']);
+        }
+    }
+
+
+    /**
      * Creates a new Gallery model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed

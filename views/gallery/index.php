@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use kartik\grid\GridView;
+use infoweb\sortable\SortableGridView;
 use yii\helpers\Url;
-
+use kartik\icons\Icon;
 use infoweb\gallery\GalleryAsset;
 
 /* @var $this yii\web\View */
@@ -14,6 +14,8 @@ $this->title = Yii::t('infoweb/gallery', 'Galleries');
 $this->params['breadcrumbs'][] = $this->title;
 
 GalleryAsset::register($this);
+Icon::map($this);
+
 ?>
 <div class="gallery-index">
 
@@ -34,10 +36,22 @@ GalleryAsset::register($this);
 
     <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    <?= SortableGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'orderUrl' => ['order'],
+        'sortOptions' => [
+            'containment' => '#grid-pjax .table',
+            'cursor' => 'move',
+        ],
         'columns' => [
+            [
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Icon::show('arrows-v', ['class' => 'handle handle-partners']);
+                },
+                'width' => '20px',
+            ],
             [
                 'attribute' => 'name',
                 'value' => 'name'
@@ -92,7 +106,8 @@ GalleryAsset::register($this);
         // @todo Create scrollingTop constant/setting
         'floatHeaderOptions' => ['scrollingTop' => 88],
         'hover' => true,
-        //'resizableColumns' => false,
+        'resizableColumns' => false,
+        'export' => false,
     ]); ?>
 
 </div>

@@ -22,7 +22,6 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "infoweb-internet-solutions/yii2-cms": "*",
         "bower-asset/blueimp-gallery": "@stable"
     },
     "autoload": {

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model infoweb\gallery\models\Gallery */
 
 $this->title = Yii::t('infoweb/cms', 'Update {modelClass}', [
-    'modelClass' => 'Gallery',
+    'modelClass' => Yii::t('infoweb/gallery', 'gallery'),
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['update', 'id' => $model->id]];

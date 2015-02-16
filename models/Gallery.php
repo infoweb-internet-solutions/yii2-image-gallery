@@ -6,6 +6,7 @@ use Yii;
 use dosamigos\translateable\TranslateableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use infoweb\sortable\Sortable;
 
 /**
  * This is the model class for table "gallery".
@@ -50,6 +51,10 @@ class Gallery extends ActiveRecord
             'image' => [
                 'class' => 'infoweb\cms\behaviors\ImageBehave',
             ],
+            'sortable' => [
+                'class' => Sortable::className(),
+                'orderAttribute' => ['position'],
+            ],
         ];
     }
 
@@ -59,7 +64,7 @@ class Gallery extends ActiveRecord
     public function rules()
     {
         return [
-            [['active', 'created_at', 'updated_at'], 'integer'],
+            [['active', 'created_at', 'updated_at', 'position'], 'integer'],
         ];
     }
 
