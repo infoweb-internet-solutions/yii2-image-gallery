@@ -278,6 +278,10 @@ class GalleryController extends Controller
      */
     public function actionDelete($id)
     {
+        // Remove all images first
+        $this->findModel($id)->removeImages();
+
+        // Remove model
         $this->findModel($id)->delete();
 
         return $this->redirect('index');
