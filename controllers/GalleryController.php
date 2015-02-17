@@ -320,3 +320,5 @@ class GalleryController extends Controller
         return $data;
     }
 }
+
+
