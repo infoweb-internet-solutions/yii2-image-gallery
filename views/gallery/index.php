@@ -43,7 +43,6 @@ Icon::map($this);
         'sortOptions' => [
             'containment' => '#grid-pjax .table',
             'cursor' => 'move',
-            'handle' => '.handle',
         ],
         'columns' => [
             [

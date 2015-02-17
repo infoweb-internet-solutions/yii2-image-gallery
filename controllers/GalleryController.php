@@ -313,11 +313,7 @@ class GalleryController extends Controller
         $model = $this->findModel(Yii::$app->request->post('id'));
         $model->active = ($model->active == 1) ? 0 : 1;
 
-        $data['status'] = $model->save();
-        $data['active'] = $model->active;
-
-        Yii::$app->response->format = 'json';
-        return $data;
+        return $model->save();
     }
 }
 
