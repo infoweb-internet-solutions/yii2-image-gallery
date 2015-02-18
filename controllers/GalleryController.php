@@ -79,7 +79,7 @@ class GalleryController extends Controller
         $root = 1;
 
         // Load the model
-        $model = new Gallery(['active' => 1]);
+        $model = new Gallery(['active' => 1, 'date' => date('U')]);
 
         try {
 

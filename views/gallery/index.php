@@ -57,6 +57,17 @@ Icon::map($this);
                 'value' => 'name'
             ],
             [
+                'attribute'=>'date',
+                'value' => function ($model, $index, $widget) {
+                    if (!$model->date) {
+                        return false;
+                    }
+                    return Yii::$app->formatter->asDate($model->date);
+                },
+                'width' => '150px',
+                'hAlign' => 'center',
+            ],
+            [
                 'class' => 'kartik\grid\ActionColumn',
                 'template' => '{update} {delete} {active} {image} {duplicate}',
                 'buttons' => [

@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Html;
+use kartik\datecontrol\DateControl;
 use kartik\widgets\SwitchInput;
 ?>
 <div class="tab-content data-tab">
@@ -13,5 +13,10 @@ use kartik\widgets\SwitchInput;
             'offText' => Yii::t('app', 'No'),
         ]
     ]); ?>
+
+    <?= $form->field($model, 'date')->widget(DateControl::classname(), [
+        'type' => DateControl::FORMAT_DATE,
+    ]) ?>
+
 
 </div>

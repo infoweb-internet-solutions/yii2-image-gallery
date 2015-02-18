@@ -64,7 +64,8 @@ class Gallery extends ActiveRecord
     public function rules()
     {
         return [
-            [['active', 'created_at', 'updated_at', 'position'], 'integer'],
+            [['active', 'created_at', 'updated_at', 'position', 'date'], 'integer'],
+            [['date'], 'default', 'value' => '0'],
         ];
     }
 
