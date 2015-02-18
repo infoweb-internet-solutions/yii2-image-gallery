@@ -25,7 +25,7 @@ $this->render('_growl_messages');
     <h1><?= Yii::t('app', 'Add {modelClass}', ['modelClass' => strtolower(Yii::t('infoweb/cms', 'Images'))] ) ?></h1>
 
     <?= FileInput::widget([
-        'id' => 'test',
+        'id' => 'file-upload',
         'name' => 'ImageUploadForm[images][]',
         'options' => [
             'multiple' => true,
@@ -39,7 +39,9 @@ $this->render('_growl_messages');
             'maxFileCount' => 100,
             'overwriteInitial' => false,
             'uploadAsync' => false,
-            'id' => 'test',
+            'fileActionSettings' => [
+                'uploadClass' => 'hide',
+            ]
         ],
     ]) ?>
 
@@ -56,7 +58,8 @@ $this->render('_growl_messages');
                 'class' => 'btn btn-danger',
                 'id' => 'batch-delete',
                 'data-pjax' => 0,
-                'style' => 'display: none;'
+                'style' => 'display: none;',
+                'data-url' => Url::toRoute('gallery-image/multiple-delete-confirm-message'),
             ]) ?>    
         </div>
     </h1>

@@ -96,17 +96,15 @@ class GalleryImageController extends BaseImagesController
                 }
             }
 
-            if ($form->hasErrors('image')){
-                $form->addError(
-                    'image',
-                    count($form->getErrors('image')) . ' of ' . count($images) . ' images not uploaded'
-                );
+            if ($form->hasErrors('image')) {
+                // @todo Translate
+                $response['message'] = count($form->getErrors('image')) . ' of ' . count($images) . ' images not uploaded';
             } else {
-                Yii::$app->session->setFlash('image-success', Yii::t('infoweb/cms', '{n, plural, =1{Image} other{# images}} successfully uploaded', ['n' => count($images)]));
+                $response['message'] = Yii::t('infoweb/cms', '{n, plural, =1{Image} other{# images}} successfully uploaded', ['n' => count($images)]);
             }
 
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return true;
+            return $response;
 
         }
     }
