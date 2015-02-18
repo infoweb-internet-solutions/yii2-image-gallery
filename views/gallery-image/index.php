@@ -23,14 +23,6 @@ $this->render('_growl_messages');
 
     <h1><?= Yii::t('app', 'Add {modelClass}', ['modelClass' => strtolower(Yii::t('infoweb/cms', 'Images'))] ) ?></h1>
 
-    <?php $form = ActiveForm::begin(['action' => ['/gallery/gallery-image/upload'], 'options' => [ 'class' => 'image-upload-form', 'enctype' => 'multipart/form-data']]); ?>
-
-    <?php if ($gallery->hasErrors()) { //it is necessary to see all the errors for all the files. @todo Show growl message
-        echo '<pre>';
-        print_r($gallery->getErrors());
-        echo '</pre>';
-    } ?>
-
     <?= FileInput::widget([
         'name' => 'ImageUploadForm[images][]',
         'options' => [
@@ -40,10 +32,12 @@ $this->render('_growl_messages');
         'pluginOptions' => [
             'previewFileType' => 'any',
             'mainClass' => 'input-group-lg',
+            'uploadUrl' => Url::to(['/gallery/gallery-image/upload']),
+            'maxFileCount' => 100,
+            'overwriteInitial' => false,
+            'uploadAsync' => false,
         ],
     ]) ?>
-
-    <?php ActiveForm::end(); ?>
 
     <?php // Title ?>
     <h1>

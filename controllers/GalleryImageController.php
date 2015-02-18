@@ -102,7 +102,8 @@ class GalleryImageController extends BaseImagesController
                 Yii::$app->session->setFlash('image-success', Yii::t('infoweb/cms', '{n, plural, =1{Image} other{# images}} successfully uploaded', ['n' => count($images)]));
             }
 
-            return $this->redirect('index');
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return true;
 
         }
     }
