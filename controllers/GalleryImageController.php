@@ -64,6 +64,9 @@ class GalleryImageController extends BaseImagesController
 
     public function actionUpload()
     {
+        // @todo Update code
+        // http://webtips.krajee.com/ajax-based-file-uploads-using-fileinput-plugin/
+
         if (Yii::$app->request->isPost) {
 
             $post = Yii::$app->request->post();

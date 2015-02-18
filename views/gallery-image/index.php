@@ -2,17 +2,18 @@
 
 use yii\helpers\Html;
 use kartik\widgets\FileInput;
-use yii\widgets\ActiveForm;
 use kartik\grid\GridView;
 use infoweb\cms\assets\ImageAsset;
 use yii\helpers\Url;
-
-ImageAsset::register($this);
+use infoweb\gallery\GalleryAsset;
 
 $this->title = Yii::t('infoweb/cms', 'Images');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['/gallery/gallery']];
 $this->params['breadcrumbs'][] = ['label' => $gallery->name, 'url' => ['/gallery/gallery/update', 'id' => $gallery->id]];
 $this->params['breadcrumbs'][] = $this->title;
+
+ImageAsset::register($this);
+GalleryAsset::register($this);
 
 // Render growl messages
 $this->render('_growl_messages');
@@ -24,9 +25,11 @@ $this->render('_growl_messages');
     <h1><?= Yii::t('app', 'Add {modelClass}', ['modelClass' => strtolower(Yii::t('infoweb/cms', 'Images'))] ) ?></h1>
 
     <?= FileInput::widget([
+        'id' => 'test',
         'name' => 'ImageUploadForm[images][]',
         'options' => [
             'multiple' => true,
+            'style' => 'margin-bottom: 30px',
             //'accept' => 'image/*',
         ],
         'pluginOptions' => [
@@ -36,6 +39,7 @@ $this->render('_growl_messages');
             'maxFileCount' => 100,
             'overwriteInitial' => false,
             'uploadAsync' => false,
+            'id' => 'test',
         ],
     ]) ?>
 

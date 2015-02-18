@@ -15,3 +15,8 @@
 .blueimp-gallery-controls > .description {
     display: block;
 }
+
+.file-input {
+    margin-bottom: 50px;
+    display: block;
+}
