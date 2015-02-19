@@ -7,7 +7,7 @@ use infoweb\gallery\GalleryAsset;
 /* @var $model infoweb\gallery\models\Gallery */
 
 $this->title = Yii::t('infoweb/cms', 'Create {modelClass}', [
-    'modelClass' => 'Gallery',
+    'modelClass' => Yii::t('infoweb/gallery', 'Gallery'),
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
