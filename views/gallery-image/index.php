@@ -130,6 +130,7 @@ $this->render('_growl_messages');
         'floatHeaderOptions' => ['scrollingTop' => 88],
         'hover' => true,
         'pjax' => true,
+        'resizableColumns' => false,
         'pjaxSettings' => [
             'options' => [
                 'id' => "grid-pjax",

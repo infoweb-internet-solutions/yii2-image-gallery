@@ -76,6 +76,7 @@ class Gallery extends ActiveRecord
     {
         return [
             'id' => Yii::t('infoweb/cms', 'ID'),
+            'date' => Yii::t('infoweb/cms', 'Date'),
             'active' => Yii::t('infoweb/cms', 'Active'),
             'created_at' => Yii::t('infoweb/cms', 'Created At'),
             'updated_at' => Yii::t('infoweb/cms', 'Updated At'),

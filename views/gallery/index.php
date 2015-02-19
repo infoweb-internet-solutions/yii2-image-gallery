@@ -97,7 +97,7 @@ Icon::map($this);
                 ],
                 'urlCreator' => function($action, $model, $key, $index) {
                     if ($action === 'image') {
-                        return Url::toRoute(['/gallery/gallery-image', 'gallery-id' => $model->id]);
+                        return Url::toRoute(['/gallery/gallery-image/index', 'gallery-id' => $model->id]);
                     } else {
                         return Url::toRoute([$action, 'id' => $key]);
                     }
