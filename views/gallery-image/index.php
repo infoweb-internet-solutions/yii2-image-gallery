@@ -39,8 +39,15 @@ $this->render('_growl_messages');
             'maxFileCount' => 100,
             'overwriteInitial' => false,
             'uploadAsync' => false,
+            'dropZoneTitle' => Yii::t('infoweb/gallery', 'Drag & drop files here …'),
             'fileActionSettings' => [
                 'uploadClass' => 'hide',
+                'removeTitle' => Yii::t('infoweb/gallery', 'Remove file'),
+                'uploadTitle' => Yii::t('infoweb/gallery', 'Upload file'),
+                'indicatorNewTitle' => Yii::t('infoweb/gallery', 'Not uploaded yet'),
+                'indicatorSuccessTitle' => Yii::t('infoweb/gallery', 'Uploaded'),
+                'indicatorErrorTitle' => Yii::t('infoweb/gallery', 'Upload Error'),
+                'indicatorLoadingTitle' => Yii::t('infoweb/gallery', 'Uploading ...'),
             ]
         ],
     ]) ?>

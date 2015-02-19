@@ -1,4 +1,7 @@
-<div class="tab-content language-tab">
+<?php
+
+?>
+<div class="tab-content default-language-tab">
     <?= $form->field($model, "[{$model->language}]alt")->textInput([
         'maxlength' => 255,
         'name' => "ImageLang[{$model->language}][alt]",
