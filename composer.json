@@ -22,7 +22,8 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "bower-asset/blueimp-gallery": "@stable"
+        "bower-asset/blueimp-gallery": "@stable",
+        "costa-rico/yii2-images": "*"
     },
     "autoload": {
         "psr-4": {
