@@ -1,8 +1,6 @@
-Please do not use this module
-
 Image gallery extension for Yii 2
 ========================================
-This extension provides an image gallery
+This extension provides a way to manage image galleries for your website.
 
 Installation
 ------------
@@ -11,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 
 Either run
 
-```
+```bash
 php composer.phar require --prefer-dist infoweb-internet-solutions/yii2-image-gallery "*"
 ```
 
 or add
 
-```
+```json
 "infoweb-internet-solutions/yii2-image-gallery": "*"
 ```
 
@@ -29,11 +27,11 @@ Usage
 
 Once the extension is installed run this migration
 
-```
+```bash
 yii migrate/up --migrationPath=@infoweb/gallery/migrations
 ```
 
-And modify your backend configuration as follows:
+And modify `backend/config/main.php` as follows:
 
 ```php
 return [
@@ -47,7 +45,7 @@ return [
 ];
 ```
 
-Import the translations and use category 'infoweb/gallery':
+Import the translations and use category **infoweb/gallery**:
 ```
 yii i18n/import @infoweb/gallery/messages
 ```
