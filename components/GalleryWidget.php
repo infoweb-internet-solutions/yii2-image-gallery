@@ -9,6 +9,7 @@ class GalleryWidget extends Widget
     public $images;
     public $size;
     public $thumbnailSize;
+    public $classes;
 
     public function init()
     {
@@ -25,6 +26,10 @@ class GalleryWidget extends Widget
         if ($this->size === null) {
             $this->size = '1000x';
         }
+
+        if ($this->classes === null) {
+            $this->classes = 'col-xs-8 col-sm-6 col-md-6 col-lg-4';
+        }
     }
 
     public function run()
@@ -35,7 +40,7 @@ class GalleryWidget extends Widget
         foreach ($this->images as $image) {
 
             $html .= Html::beginTag('div', [
-                'class' => 'col-xs-8 col-sm-6 col-md-6 col-lg-4',
+                'class' => $this->classes,
                 'style' => 'margin-bottom: 30px;',
             ]);
             $html .= Html::a(
