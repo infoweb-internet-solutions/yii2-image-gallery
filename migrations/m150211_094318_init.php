@@ -22,6 +22,8 @@ class m150211_094318_init extends Migration
         $this->createTable('{{%gallery}}', [
             'id'                    => Schema::TYPE_PK,
             'date'                  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            'thumbnail_width'       => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'250\'',
+            'thumbnail_height'      => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'150\'',
             'active'                => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT \'1\'',
             'position'              => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT \'0\'',
             'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',

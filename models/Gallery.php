@@ -66,6 +66,9 @@ class Gallery extends ActiveRecord
         return [
             [['active', 'created_at', 'updated_at', 'position', 'date'], 'integer'],
             [['date'], 'default', 'value' => '0'],
+            [['thumbnail_width'], 'default', 'value' => '250'],
+            [['thumbnail_height'], 'default', 'value' => '150'],
+            [['thumbnail_width', 'thumbnail_height'], 'required'],
         ];
     }
 
@@ -77,6 +80,8 @@ class Gallery extends ActiveRecord
         return [
             'id' => Yii::t('infoweb/cms', 'ID'),
             'date' => Yii::t('infoweb/cms', 'Date'),
+            'thumbnail_width' => Yii::t('infoweb/gallery', 'Thumbnail width'),
+            'thumbnail_height' => Yii::t('infoweb/gallery', 'Thumbnail height'),
             'active' => Yii::t('infoweb/cms', 'Active'),
             'created_at' => Yii::t('infoweb/cms', 'Created At'),
             'updated_at' => Yii::t('infoweb/cms', 'Updated At'),

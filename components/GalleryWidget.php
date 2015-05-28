@@ -7,8 +7,8 @@ use yii\helpers\Html;
 class GalleryWidget extends Widget
 {
     public $images;
+    public $gallery;
     public $size;
-    public $thumbnailSize;
     public $classes;
 
     public function init()
@@ -19,8 +19,8 @@ class GalleryWidget extends Widget
             $this->images = [];
         }
 
-        if ($this->size === null) {
-            $this->thumbnailSize = '200x150';
+        if ($this->gallery === null) {
+            $this->gallery = [];
         }
 
         if ($this->size === null) {
@@ -37,14 +37,17 @@ class GalleryWidget extends Widget
         $html = '';
         $html .= Html::beginTag('div', ['id' => 'links', 'class' => 'row']);
 
+        // @todo Move to view
+
         foreach ($this->images as $image) {
 
             $html .= Html::beginTag('div', [
                 'class' => $this->classes,
                 'style' => 'margin-bottom: 30px;',
             ]);
+
             $html .= Html::a(
-                Html::img($image->getUrl($this->thumbnailSize), [
+                Html::img($image->getUrl("{$this->gallery->thumbnail_width}x{$this->gallery->thumbnail_height}"), [
                     'alt' => $image->alt,
                     'data-description' => $image->description,
                     'class' => 'img-responsive img-rounded'

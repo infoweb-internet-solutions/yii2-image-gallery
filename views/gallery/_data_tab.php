@@ -8,6 +8,10 @@ use kartik\widgets\SwitchInput;
         'type' => DateControl::FORMAT_DATE,
     ]) ?>
 
+    <?= $form->field($model, 'thumbnail_width')->textInput() ?>
+
+    <?= $form->field($model, 'thumbnail_height')->textInput() ?>
+
     <?php echo $form->field($model, 'active')->widget(SwitchInput::classname(), [
         'inlineLabel' => false,
         'pluginOptions' => [
