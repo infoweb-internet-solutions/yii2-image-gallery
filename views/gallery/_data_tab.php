@@ -8,9 +8,11 @@ use kartik\widgets\SwitchInput;
         'type' => DateControl::FORMAT_DATE,
     ]) ?>
 
+    <?php if (Yii::$app->user->can('Superadmin')) : ?>
     <?= $form->field($model, 'thumbnail_width')->textInput() ?>
 
     <?= $form->field($model, 'thumbnail_height')->textInput() ?>
+    <?php endif; ?>
 
     <?php echo $form->field($model, 'active')->widget(SwitchInput::classname(), [
         'inlineLabel' => false,
