@@ -80,11 +80,8 @@ class Lang extends ActiveRecord
     {
         return [
             'gallery' => Yii::t('infoweb/gallery', 'Gallery'),
-            'language' => Yii::t('infoweb/cms', 'Language'),
-            'name' => Yii::t('infoweb/cms', 'Name'),
-            'description' => Yii::t('infoweb/cms', 'Description'),
-            'created_at' => Yii::t('infoweb/cms', 'Created At'),
-            'updated_at' => Yii::t('infoweb/cms', 'Updated At'),
+            'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
         ];
     }
 

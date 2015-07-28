@@ -78,13 +78,11 @@ class Gallery extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('infoweb/cms', 'ID'),
-            'date' => Yii::t('infoweb/cms', 'Date'),
+            'date' => Yii::t('app', 'Date'),
+            'name' => Yii::t('app', 'Name'),
             'thumbnail_width' => Yii::t('infoweb/gallery', 'Thumbnail width'),
             'thumbnail_height' => Yii::t('infoweb/gallery', 'Thumbnail height'),
-            'active' => Yii::t('infoweb/cms', 'Active'),
-            'created_at' => Yii::t('infoweb/cms', 'Created At'),
-            'updated_at' => Yii::t('infoweb/cms', 'Updated At'),
+            'active' => Yii::t('app', 'Active'),
         ];
     }
 

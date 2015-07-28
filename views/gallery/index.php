@@ -53,10 +53,7 @@ Icon::map($this);
                 },
                 'width' => '20px',
             ],
-            [
-                'attribute' => 'name',
-                'value' => 'name'
-            ],
+            'name',
             [
                 'attribute'=>'date',
                 'value'=>function ($model, $index, $widget) {
