@@ -20,7 +20,7 @@ $this->render('_growl_messages');
 
     <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only"><?php echo Yii::t('app', 'Close'); ?></span></button>
-        <?= Yii::t('infoweb/cms', 'Drag and drop the images to change the sort order') ?>
+        <?= Yii::t('app', 'Drag and drop the images to change the sort order') ?>
     </div>
 
     <div class="row" id="sortable">
