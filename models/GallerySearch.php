@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use infoweb\gallery\models\Gallery;
+use yii\helpers\StringHelper;
 
 /**
  * GallerySearch represents the model behind the search form about `infoweb\gallery\models\Gallery`.
@@ -19,7 +20,7 @@ class GallerySearch extends Gallery
     {
         return [
             [['active'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'date'], 'safe'],
         ];
     }
 
@@ -55,6 +56,11 @@ class GallerySearch extends Gallery
 
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
+        }
+
+        // Convert date to Unix timestamp
+        if (!empty($params[StringHelper::basename(self::className())]['date'])) {
+            $query->andFilterWhere(['date' => strtotime($params[StringHelper::basename(self::className())]['date'])]);
         }
 
         $query->andFilterWhere([

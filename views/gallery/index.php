@@ -59,13 +59,18 @@ Icon::map($this);
             ],
             [
                 'attribute'=>'date',
-                'value' => function ($model, $index, $widget) {
-                    if (!$model->date) {
-                        return false;
-                    }
+                'value'=>function ($model, $index, $widget) {
                     return Yii::$app->formatter->asDate($model->date);
                 },
-                'width' => '150px',
+                'filterType' => \kartik\grid\GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => [
+                        'format' => 'dd-mm-yyyy',
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                    ]
+                ],
+                'width' => '220px',
                 'hAlign' => 'center',
             ],
             [
