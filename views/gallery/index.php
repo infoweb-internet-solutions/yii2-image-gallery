@@ -91,7 +91,7 @@ Icon::map($this);
                     },
                     'image' => function ($url, $model) {
                         return Html::a('<span class="glyphicon glyphicon-picture"></span>', $url, [
-                            'title' => Yii::t('infoweb/cms', 'Images'),
+                            'title' => Yii::t('app', 'Images'),
                             'data-pjax' => '0',
                             'data-toggle' => 'tooltip',
                         ]);

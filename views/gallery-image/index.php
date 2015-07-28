@@ -7,7 +7,7 @@ use infoweb\cms\assets\ImageAsset;
 use yii\helpers\Url;
 use infoweb\gallery\GalleryAsset;
 
-$this->title = Yii::t('infoweb/cms', 'Images');
+$this->title = Yii::t('app', 'Images');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['/gallery/gallery']];
 $this->params['breadcrumbs'][] = ['label' => $gallery->name, 'url' => ['/gallery/gallery/update', 'id' => $gallery->id]];
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,7 +22,7 @@ $this->render('_growl_messages');
 
 <div class="images-index">
 
-    <h1><?= Yii::t('app', 'Add {modelClass}', ['modelClass' => strtolower(Yii::t('infoweb/cms', 'Images'))] ) ?></h1>
+    <h1><?= Yii::t('app', 'Add {modelClass}', ['modelClass' => strtolower(Yii::t('app', 'Images'))] ) ?></h1>
 
     <?= FileInput::widget([
         'id' => 'file-upload',
@@ -58,7 +58,7 @@ $this->render('_growl_messages');
         <?php // Buttons ?>
         <div class="pull-right">
             <?= Html::a(Yii::t('app', 'Sort {modelClass}', [
-                'modelClass' => Yii::t('infoweb/cms', 'Images'),
+                'modelClass' => Yii::t('app', 'Images'),
             ]), ['sort'], ['class' => 'btn btn-success']) ?>
     
             <?= Html::button(Yii::t('app', 'Delete'), [
@@ -118,7 +118,7 @@ $this->render('_growl_messages');
                             return '<span class="glyphicon glyphicon-star icon-blue"></span>';
 
                         return Html::a('<span class="glyphicon glyphicon-star icon-gray"></span>', $url, [
-                            'title' => Yii::t('infoweb/cms', 'Set as main image'),
+                            'title' => Yii::t('app', 'Set as main image'),
                             'data-pjax' => '0',
                             'data-toggleable' => 'true',
                             'data-toggle-id' => $model->id,
