@@ -53,7 +53,7 @@ class GalleryImageController extends BaseImagesController
         $gallery = Gallery::findOne(Yii::$app->session->get('gallery.gallery-id'));
 
         $searchModel = new ImageSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $gallery->id);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $gallery->id, Gallery::className());
 
         return $this->render('index', [
             'searchModel' => $searchModel,
