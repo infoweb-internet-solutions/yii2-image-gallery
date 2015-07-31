@@ -33,7 +33,6 @@ class Gallery extends Widget
         return $model;
     }
 
-
     /**
      * @return null|string
      */
