@@ -10,23 +10,41 @@ class Gallery extends Widget
     public $template = '_galleries';
     public $detailTemplate = '_gallery';
     public $class = 'col-sm-8';
-    public $model = null;
 
     public function init()
     {
         parent::init();
+
     }
+
+    /**
+     * Get the requested model
+     *
+     * @return array|null|\yii\db\ActiveRecord|static
+     */
+    private function findModel()
+    {
+        $model = null;
+
+        if (Yii::$app->request->get('slug', null) !== null) {
+            $model = GalleryModel::find()->joinWith('translations')->where(['slug' => Yii::$app->request->get('slug'), 'active' => 1])->one();
+        }
+
+        return $model;
+    }
+
 
     /**
      * @return null|string
      */
     public function run()
     {
-        $models = GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_DESC])->all();
+        $model = $this->findModel();
 
-        if (isset($this->model)) {
-            return $this->render($this->detailTemplate, ['model' => $this->model, 'class' => $this->class]);
+        if (isset($model)) {
+            return $this->render($this->detailTemplate, ['model' => $model, 'class' => $this->class]);
         } else {
+            $models = GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_DESC])->all();
             return $this->render($this->template, ['models' => $models, 'class' => $this->class]);
         }
     }
