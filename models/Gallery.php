@@ -39,6 +39,7 @@ class Gallery extends ActiveRecord
                 'translationAttributes' => [
                     'name',
                     'description',
+                    'slug',
                 ]
             ],
             'timestamp' => [
@@ -93,6 +94,30 @@ class Gallery extends ActiveRecord
     public function getTranslations()
     {
         return $this->hasMany(Lang::className(), ['gallery_id' => 'id'])->from(['translations' => Lang::tableName()]);
+    }
+
+    /**
+     * Returns the url of the page
+     *
+     * @param   string  $includeLanguage
+     * @return  string  $url
+     */
+    public function getUrl($includeLanguage = true)
+    {
+        $url = (Yii::$app->id !== 'app-backend') ? Yii::getAlias('@baseUrl') . '/' : '';
+
+        if ($includeLanguage)
+            $url .= (($this->language == null) ? Yii::$app->language : $this->language) . '/';
+
+        $module = Yii::$app->getModule('gallery');
+
+        if ($module->urlPrefix) {
+            $url .= Yii::t('url', $module->urlPrefix) . '/';
+        }
+
+        $url .= $this->slug;
+
+        return $url;
     }
 
 }
