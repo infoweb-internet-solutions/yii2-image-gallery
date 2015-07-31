@@ -244,7 +244,7 @@ class GalleryController extends Controller
                     $model->language = Yii::$app->language;
 
                     // Set flash message
-                    Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '{item} has been updated', ['item' => $model->name]));
+                    Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been updated', ['item' => $model->name]));
 
                     // Take appropriate action based on the pushed button
                     if (isset($post['close'])) {
@@ -278,11 +278,16 @@ class GalleryController extends Controller
      */
     public function actionDelete($id)
     {
+        $model = $this->findModel($id);
+
         // Remove all images first
-        $this->findModel($id)->removeImages();
+        $model->removeImages();
 
         // Remove model
-        $this->findModel($id)->delete();
+        $model->delete();
+
+        // Set flash message
+        Yii::$app->getSession()->setFlash('commission', Yii::t('app', '"{item}" has been deleted', ['item' => $model->name]));
 
         return $this->redirect('index');
     }
