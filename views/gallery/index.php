@@ -34,8 +34,6 @@ Icon::map($this);
     <?php // Flash messages ?>
     <?php echo $this->render('_flash_messages'); ?>
 
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= SortableGridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -109,19 +107,6 @@ Icon::map($this);
                 'width' => '160px',
             ],
         ],
-        'pjax' => true,
-        'pjaxSettings' => [
-            'options' => [
-                'id' => "grid-pjax",
-            ],
-        ],
-        'responsive' => true,
-        'floatHeader' => true,
-        // @todo Create scrollingTop constant/setting
-        'floatHeaderOptions' => ['scrollingTop' => 88],
-        'hover' => true,
-        'resizableColumns' => false,
-        'export' => false,
     ]); ?>
 
 </div>

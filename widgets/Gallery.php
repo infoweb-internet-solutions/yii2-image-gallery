@@ -8,6 +8,7 @@ use infoweb\gallery\models\Gallery as GalleryModel;
 class Gallery extends Widget
 {
     public $template = '_gallery';
+    public $class = 'col-sm-8';
 
     public function init()
     {
@@ -22,6 +23,6 @@ class Gallery extends Widget
 
         $models = GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_DESC])->all();
 
-        return $this->render($this->template, ['models' => $models]);
+        return $this->render($this->template, ['models' => $models, 'class' => $this->class]);
     }
 }

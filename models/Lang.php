@@ -5,6 +5,7 @@ namespace infoweb\gallery\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use yii\behaviors\SluggableBehavior;
 
 /**
  * This is the model class for table "gallery_lang".
@@ -41,7 +42,13 @@ class Lang extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
                 ],
                 'value' => function() { return time(); },
-            ]
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'slugAttribute' => 'slug',
+                'attribute' => 'name',
+                'ensureUnique' => true,
+            ],
         ];
     }
 

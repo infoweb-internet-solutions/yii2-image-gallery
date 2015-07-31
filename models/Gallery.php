@@ -6,6 +6,7 @@ use Yii;
 use dosamigos\translateable\TranslateableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+
 use infoweb\sortable\Sortable;
 
 /**
