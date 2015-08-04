@@ -7,8 +7,8 @@ use infoweb\gallery\models\Gallery as GalleryModel;
 
 class Gallery extends Widget
 {
-    public $template = '_galleries';
-    public $detailTemplate = '_gallery';
+    public $template = '_list';
+    public $detailTemplate = '_single';
     public $class = 'col-sm-8';
 
     public function init()
