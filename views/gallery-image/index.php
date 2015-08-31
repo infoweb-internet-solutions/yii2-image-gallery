@@ -60,14 +60,14 @@ $this->render('_growl_messages');
             <?= Html::a(Yii::t('app', 'Sort {modelClass}', [
                 'modelClass' => Yii::t('app', 'Images'),
             ]), ['sort'], ['class' => 'btn btn-success']) ?>
-    
+
             <?= Html::button(Yii::t('app', 'Delete'), [
                 'class' => 'btn btn-danger',
                 'id' => 'batch-delete',
                 'data-pjax' => 0,
                 'style' => 'display: none;',
                 'data-url' => Url::toRoute('gallery-image/multiple-delete-confirm-message'),
-            ]) ?>    
+            ]) ?>
         </div>
     </h1>
 
