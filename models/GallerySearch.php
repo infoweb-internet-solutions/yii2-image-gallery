@@ -44,11 +44,9 @@ class GallerySearch extends Gallery
     {
         $query = Gallery::find()->joinWith(['translations'])->where(['language' => Yii::$app->language]);
 
-        $query->orderBy('position');
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => false,
+            'sort' => ['defaultOrder' => ['date' => SORT_DESC]],
             'pagination' => [
                 'pageSize' => 50,
             ],
@@ -62,11 +60,6 @@ class GallerySearch extends Gallery
         if (!empty($params[StringHelper::basename(self::className())]['date'])) {
             $query->andFilterWhere(['date' => strtotime($params[StringHelper::basename(self::className())]['date'])]);
         }
-
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'active' => $this->active,
-        ]);
 
         $query->andFilterWhere(['like', 'translations.name', $this->name]);
 

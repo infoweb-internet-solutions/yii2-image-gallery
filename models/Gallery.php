@@ -53,10 +53,6 @@ class Gallery extends ActiveRecord
             'image' => [
                 'class' => 'infoweb\cms\behaviors\ImageBehave',
             ],
-            'sortable' => [
-                'class' => Sortable::className(),
-                'orderAttribute' => ['position'],
-            ],
         ];
     }
 

@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use infoweb\sortable\SortableGridView;
 use yii\helpers\Url;
 use kartik\icons\Icon;
 use infoweb\gallery\GalleryAsset;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel infoweb\gallery\models\GallerySearch */
@@ -34,30 +34,17 @@ Icon::map($this);
     <?php // Flash messages ?>
     <?php echo $this->render('_flash_messages'); ?>
 
-    <?= SortableGridView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'orderUrl' => ['order'],
-        'sortOptions' => [
-            'containment' => '#grid-pjax .table',
-            'cursor' => 'move',
-            'handle' => '.handle',
-        ],
         'columns' => [
-            [
-                'format' => 'raw',
-                'value' => function ($model) {
-                    return Icon::show('arrows-v', ['class' => 'handle handle-partners']);
-                },
-                'width' => '20px',
-            ],
             'name',
             [
                 'attribute'=>'date',
                 'value'=>function ($model, $index, $widget) {
                     return Yii::$app->formatter->asDate($model->date);
                 },
-                'filterType' => \kartik\grid\GridView::FILTER_DATE,
+                'filterType' => GridView::FILTER_DATE,
                 'filterWidgetOptions' => [
                     'pluginOptions' => [
                         'format' => 'dd-mm-yyyy',
