@@ -48,7 +48,13 @@ $this->render('_growl_messages');
                 'indicatorSuccessTitle' => Yii::t('infoweb/gallery', 'Uploaded'),
                 'indicatorErrorTitle' => Yii::t('infoweb/gallery', 'Upload Error'),
                 'indicatorLoadingTitle' => Yii::t('infoweb/gallery', 'Uploading ...'),
-            ]
+            ],
+            'browseLabel' => Yii::t('infoweb/gallery', 'Browse'),
+            'removeLabel' => Yii::t('infoweb/gallery', 'Remove'),
+            'removeTitle' => Yii::t('infoweb/gallery', 'Remove selected files'),
+            'uploadLabel' => Yii::t('infoweb/gallery', 'Upload'),
+            'uploadTitle' => Yii::t('infoweb/gallery', 'Upload selected files'),
+            'cancelLabel' => Yii::t('infoweb/gallery', 'Cancel'),           
         ],
     ]) ?>
 
