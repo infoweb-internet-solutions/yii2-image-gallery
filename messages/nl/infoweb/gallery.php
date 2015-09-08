@@ -13,4 +13,10 @@ return [
     'Uploaded' => 'Ge-upload',
     'Uploading ...' => 'Uploading ...',
     'gallery' => '',
+    'Browse' => 'Bladeren',
+    'Remove' => 'Verwijderen',
+    'Remove selected files' => 'Verwijder de geselecteerde bestanden',
+    'Upload' => 'Upload',
+    'Upload selected files' => 'Upload de geselecteerde bestanden',
+    'Cancel' => 'Annuleren'
 ];
