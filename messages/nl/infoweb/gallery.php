@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Drag & drop files here …' => 'Sleep hier je bestanden naartoe ...',
+    'Drag & drop files here ...' => 'Sleep hier je bestanden naartoe ...',
     'Galleries' => 'Fotoalbums',
     'Gallery' => 'Fotoalbum',
     'Not uploaded yet' => 'Nog niet ge-upload',
