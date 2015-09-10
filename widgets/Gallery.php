@@ -46,7 +46,15 @@ class Gallery extends Widget
         } else {
 
             $models = ArrayHelper::indexRecursive(GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_DESC])->orderBy(['date' => SORT_DESC])->all(), function($element) {
-                return date('Y', $element['date']);
+                $year = date('Y', $element['date']);
+                $month = date('m', $element['date']);
+                
+                // Create the index based on the date (a period runs from 01/07/current-year till 30/06/next-year)
+                if (in_array($month, ['07', '08', '09', '10', '11', '12'])) {
+                    return $year.'-'.($year+1);    
+                } else {
+                    return ($year-1).'-'.$year;    
+                }
             });
 
             return $this->render($this->template, ['models' => $models, 'class' => $this->class]);
