@@ -262,7 +262,7 @@ class GalleryImageController extends BaseImagesController
     {
         $gallery = Gallery::findOne(Yii::$app->session->get('gallery.gallery-id'));
 
-        $images = Image::find()->where(['itemId' => $gallery->id, 'modelName' => 'Gallery'])->orderBy(['position' => SORT_DESC])->all();
+        $images = Image::find()->where(['itemId' => $gallery->id, 'modelName' => 'Gallery'])->orderBy(['position' => SORT_ASC])->all();
 
         return $this->render('sort', [
             'gallery' => $gallery,
@@ -278,7 +278,7 @@ class GalleryImageController extends BaseImagesController
 
             // Get ids
             $post = Yii::$app->request->post();
-            $ids = array_reverse($post['ids']);
+            $ids = $post['ids'];
 
             $sqlValues = [];
 

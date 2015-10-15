@@ -45,7 +45,7 @@ class Gallery extends Widget
             return $this->render($this->detailTemplate, ['model' => $model, 'class' => $this->class]);
         } else {
 
-            $models = ArrayHelper::indexRecursive(GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_DESC])->orderBy(['date' => SORT_DESC])->all(), function($element) {
+            $models = ArrayHelper::indexRecursive(GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_ASC])->orderBy(['date' => SORT_DESC])->all(), function($element) {
                 $year = date('Y', $element['date']);
                 $month = date('m', $element['date']);
                 
