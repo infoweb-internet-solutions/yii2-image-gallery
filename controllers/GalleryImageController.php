@@ -15,7 +15,7 @@ use yii\helpers\Url;
 use yii\helpers\StringHelper;
 
 use infoweb\cms\models\Image;
-use infoweb\cms\models\ImageSearch;
+use infoweb\gallery\models\ImageSearch;
 use infoweb\cms\models\ImageUploadForm;
 use infoweb\gallery\models\Gallery;
 
