@@ -8,7 +8,7 @@ use yii\helpers\Html;
 <p><?= $model->description ?></p>
 
 <div class="row">
-    <?php foreach ($model->getImages() as $image): ?>
+    <?php foreach ($model->getImages(false, false, ['position' => SORT_ASC]) as $image): ?>
     <div class="col-sm-6">
 
         <?= Html::a(
