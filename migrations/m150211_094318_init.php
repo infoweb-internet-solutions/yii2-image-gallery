@@ -16,28 +16,29 @@ class m150211_094318_init extends Migration
 
         /**
          * Gallery
-        */
+         */
 
         // Create 'gallery' table
         $this->createTable('{{%gallery}}', [
-            'id'                    => Schema::TYPE_PK,
-            'date'                  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-            'thumbnail_width'       => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'250\'',
-            'thumbnail_height'      => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'150\'',
-            'active'                => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT \'1\'',
-            'position'              => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT \'0\'',
-            'created_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-            'updated_at'            => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+
+            'id'               => Schema::TYPE_PK,
+            'date'             => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            'thumbnail_width'  => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'250\'',
+            'thumbnail_height' => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'150\'',
+            'active'           => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'1\'',
+            'position'         => Schema::TYPE_INTEGER . ' UNSIGNED NOT',
+            'created_at'       => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            'updated_at'       => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
         ], $tableOptions);
 
         // Create 'gallery_lang' table
         $this->createTable('{{%gallery_lang}}', [
-            'gallery_id'        => Schema::TYPE_INTEGER . ' NOT NULL',
-            'language'          => Schema::TYPE_STRING . '(2) NOT NULL',
-            'name'              => Schema::TYPE_STRING . '(255) NOT NULL',
-            'description'       => Schema::TYPE_TEXT . ' NOT NULL',
-            'created_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
-            'updated_at'        => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            'gallery_id'  => Schema::TYPE_INTEGER . ' NOT NULL',
+            'language'    => Schema::TYPE_STRING . '(10) NOT NULL',
+            'name'        => Schema::TYPE_STRING . '(255) NOT NULL',
+            'description' => Schema::TYPE_TEXT . ' NOT NULL',
+            'created_at'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
+            'updated_at'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
         ], $tableOptions);
 
         $this->addPrimaryKey('gallery_id_language', '{{%gallery_lang}}', ['gallery_id', 'language']);

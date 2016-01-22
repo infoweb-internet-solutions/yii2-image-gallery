@@ -49,3 +49,12 @@ Import the translations and use category **infoweb/gallery**:
 ```
 yii i18n/import @infoweb/gallery/messages
 ```
+
+
+Configuration
+-------------
+All available configuration options are listed below with their default values.
+___
+##### allowContentDuplication (type: `boolean`, default: `true`)
+If this option is set to `true`, the `duplicateable` jquery plugin is activated on all translateable attributes.
+___

@@ -130,7 +130,9 @@ class GalleryController extends Controller
                         $model->name        = $data['name'];
                         $model->description = $data['description'];
 
+
                         if (!$model->saveTranslation()) {
+                            echo '<pre>'; print_r($model->attributes); echo '</pre>'; exit();
                             throw new Exception(Yii::t('app', 'Failed to save the translation'));
                         }
                     }
