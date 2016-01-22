@@ -58,3 +58,15 @@ ___
 ##### allowContentDuplication (type: `boolean`, default: `true`)
 If this option is set to `true`, the `duplicateable` jquery plugin is activated on all translateable attributes.
 ___
+##### enableDescription (type: `boolean`, default: `true`)
+If this option is set to `true`, it is possible to add a description.
+___
+##### enableDate (type: `boolean`, default: `true`)
+If this option is set to `true`, it is possible to add a date.
+___
+##### defaultThumbnailWidth (type: `integer`, default: `250`)
+This sets the default width for thumbnails
+___
+##### defaultThumbnailHeight (type: `integer`, default: `150`)
+This sets the default height for thumbnails
+___

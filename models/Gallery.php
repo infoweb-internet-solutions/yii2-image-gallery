@@ -68,8 +68,8 @@ class Gallery extends ActiveRecord
         return [
             [['active', 'created_at', 'updated_at', 'position', 'date'], 'integer'],
             [['date'], 'default', 'value' => '0'],
-            [['thumbnail_width'], 'default', 'value' => '250'],
-            [['thumbnail_height'], 'default', 'value' => '150'],
+            [['thumbnail_width'], 'default', 'value' => Yii::$app->getModule('gallery')->defaultThumbnailWidth],
+            [['thumbnail_height'], 'default', 'value' => Yii::$app->getModule('gallery')->defaultThumbnailHeight],
             [['thumbnail_width', 'thumbnail_height'], 'required'],
         ];
     }

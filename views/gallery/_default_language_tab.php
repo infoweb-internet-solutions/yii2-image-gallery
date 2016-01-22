@@ -10,9 +10,11 @@ use infoweb\cms\helpers\LanguageHelper;
         'data-duplicateable' => Yii::$app->getModule('gallery')->allowContentDuplication ? 'true' : 'false'
     ]); ?>
 
+    <?php if (Yii::$app->getModule('gallery')->enableDescription): ?>
     <?= $form->field($model, "[{$model->language}]description")->widget(CKEditor::className(), [
         'name' => "Lang[{$model->language}][description]",
         'editorOptions' => ArrayHelper::merge(Yii::$app->getModule('cms')->getCKEditorOptions(), (LanguageHelper::isRtl($model->language)) ? ['contentsLangDirection' => 'rtl'] : []),
         'options' => ['data-duplicateable' => Yii::$app->getModule('gallery')->allowContentDuplication ? 'true' : 'false'],
     ]); ?>
+    <?php endif; ?>
 </div>

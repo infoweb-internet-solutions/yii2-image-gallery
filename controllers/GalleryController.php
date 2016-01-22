@@ -75,9 +75,6 @@ class GalleryController extends Controller
         // Load languages
         $languages = Yii::$app->params['languages'];
 
-        // Set the category root
-        $root = 1;
-
         // Load the model
         $model = new Gallery(['active' => 1, 'date' => date('U')]);
 
@@ -132,7 +129,6 @@ class GalleryController extends Controller
 
 
                         if (!$model->saveTranslation()) {
-                            echo '<pre>'; print_r($model->attributes); echo '</pre>'; exit();
                             throw new Exception(Yii::t('app', 'Failed to save the translation'));
                         }
                     }
@@ -180,9 +176,6 @@ class GalleryController extends Controller
     {
         // Load languages
         $languages = Yii::$app->params['languages'];
-
-        // Set the category root
-        $root = 1;
 
         // Load the model
         $model = $this->findModel($id);

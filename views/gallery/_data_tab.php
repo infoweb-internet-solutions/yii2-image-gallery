@@ -4,9 +4,11 @@ use kartik\widgets\SwitchInput;
 ?>
 <div class="tab-content data-tab">
 
+    <?php if (Yii::$app->getModule('gallery')->enableDate) : ?>
     <?= $form->field($model, 'date')->widget(DateControl::classname(), [
         'type' => DateControl::FORMAT_DATE,
     ]) ?>
+    <?php endif; ?>
 
     <?php if (Yii::$app->user->can('Superadmin')) : ?>
     <?= $form->field($model, 'thumbnail_width')->textInput() ?>

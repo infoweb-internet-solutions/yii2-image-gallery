@@ -14,6 +14,30 @@ class Module extends \yii\base\Module
      */
     public $allowContentDuplication = true;
 
+    /**
+     * Enable a description field
+     * @var boolean
+     */
+    public $enableDescription = true;
+
+    /**
+     * Enable a date field
+     * @var boolean
+     */
+    public $enableDate = true;
+
+    /**
+     * The default value for the thumbnail width
+     * @var boolean
+     */
+    public $defaultThumbnailWidth = 250;
+
+    /**
+     * The default value for the thumbnail height
+     * @var boolean
+     */
+    public $defaultThumbnailHeight = 150;
+
     public function init()
     {
         parent::init();
