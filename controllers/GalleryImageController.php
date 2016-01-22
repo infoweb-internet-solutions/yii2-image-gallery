@@ -100,7 +100,9 @@ class GalleryImageController extends BaseImagesController
                 // @todo Translate
                 $response['message'] = count($form->getErrors('image')) . ' of ' . count($images) . ' images not uploaded';
             } else {
-                $response['message'] = Yii::t('infoweb/cms', '{n, plural, =1{Image} other{# images}} successfully uploaded', ['n' => count($images)]);
+                $response['message'] = Yii::t('app', '{n, plural, =1{Image} other{# images}} successfully uploaded', [
+                    'n' => count($images),
+                ]);
             }
 
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -238,7 +240,7 @@ class GalleryImageController extends BaseImagesController
 
             Image::deleteAll(['id' => $ids]);
 
-            $data['message'] = Yii::t('infoweb/cms', '{n, plural, =1{Image} other{# images}} successfully deleted', ['n' => count($ids)]);
+            $data['message'] = Yii::t('app', '{n, plural, =1{Image} other{# images}} successfully deleted', ['n' => count($ids)]);
             $data['status'] = 1;
         }
 
@@ -248,7 +250,7 @@ class GalleryImageController extends BaseImagesController
     public function actionMultipleDeleteConfirmMessage()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $message = Yii::t('infoweb/cms', 'Are you sure you want to delete {n, plural, =1{this image} other{# images}}?', ['n' => Yii::$app->request->post('ids')]);
+        $message = Yii::t('app', 'Are you sure you want to delete {n, plural, =1{this image} other{# images}}?', ['n' => Yii::$app->request->post('ids')]);
         return $message;
     }
 

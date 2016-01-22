@@ -7,7 +7,7 @@ ImageAsset::register($this);
 $this->title = Yii::t('app', 'Sort');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/gallery', 'Galleries'), 'url' => ['/gallery/gallery']];
 $this->params['breadcrumbs'][] = ['label' => $gallery->name, 'url' => ['/gallery/gallery/update', 'id' => $gallery->id]];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('infoweb/cms', 'Images'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Images'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 // Render growl messages

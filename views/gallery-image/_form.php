@@ -23,12 +23,12 @@ use yii\bootstrap\Tabs;
     // Add the main tabs
     $tabs = [
         [
-            'label' => Yii::t('infoweb/cms', 'General'),
+            'label' => Yii::t('app', 'General'),
             'content' => $this->render('_default_tab', ['model' => $model, 'form' => $form]),
             'active' => true,
         ],
         [
-            'label' => Yii::t('infoweb/cms', 'Data'),
+            'label' => Yii::t('app', 'Data'),
             'content' => $this->render('_data_tab', ['model' => $model, 'form' => $form]),
         ],
     ];
