@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 ?>
+<?= Html::a(Yii::t('frontend', 'Terug naar het overzicht'), Yii::$app->request->referrer, ['class' => 'btn btn-default pull-right']) ?>
 <h2><?= $model->name ?></h2>
 
 <?= Html::img($model->getImage()->getUrl('1000x'), ['class' => 'img-responsive center-block', 'alt' => $model->getImage()->alt, 'title' => $model->getImage()->title]) ?>

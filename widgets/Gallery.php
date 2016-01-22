@@ -43,7 +43,7 @@ class Gallery extends Widget
         if (isset($model)) {
             return $this->render($this->detailTemplate, ['model' => $model, 'class' => $this->class]);
         } else {
-            $models = GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_DESC])->all();
+            $models = GalleryModel::find()->where(['active' => 1])->orderby(['position' => SORT_ASC])->all();
             return $this->render($this->template, ['models' => $models, 'class' => $this->class]);
         }
     }
