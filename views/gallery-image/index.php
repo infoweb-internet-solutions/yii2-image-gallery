@@ -138,17 +138,6 @@ $this->render('_growl_messages');
                 'vAlign' => GridView::ALIGN_MIDDLE,
             ],
         ],
-        'responsive' => true,
-        'floatHeader' => true,
-        'floatHeaderOptions' => ['scrollingTop' => 88],
-        'hover' => true,
-        'pjax' => true,
-        'resizableColumns' => false,
-        'pjaxSettings' => [
-            'options' => [
-                'id' => "grid-pjax",
-            ],
-        ],
     ]) ?>
 
 </div>

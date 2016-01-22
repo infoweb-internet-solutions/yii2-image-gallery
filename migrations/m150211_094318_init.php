@@ -37,6 +37,7 @@ class m150211_094318_init extends Migration
             'language'    => Schema::TYPE_STRING . '(10) NOT NULL',
             'name'        => Schema::TYPE_STRING . '(255) NOT NULL',
             'description' => Schema::TYPE_TEXT . ' NOT NULL',
+            'slug'        => Schema::TYPE_STRING . '(255) NOT NULL',
             'created_at'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
             'updated_at'  => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
         ], $tableOptions);
