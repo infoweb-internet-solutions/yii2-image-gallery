@@ -22,7 +22,7 @@ class Gallery extends Widget
      *
      * @return array|null|\yii\db\ActiveRecord|static
      */
-    private function findModel()
+    public function findModel()
     {
         $model = null;
 
