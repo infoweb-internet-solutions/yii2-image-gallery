@@ -39,7 +39,7 @@ $this->render('_growl_messages');
             'maxFileCount' => 100,
             'overwriteInitial' => false,
             'uploadAsync' => false,
-            'dropZoneTitle' => Yii::t('infoweb/gallery', 'Drag & drop files here …'),
+            'dropZoneTitle' => Yii::t('app', 'Drag & drop files here ...'),
             'fileActionSettings' => [
                 'uploadClass' => 'hide',
                 'removeTitle' => Yii::t('app', 'Remove file'),

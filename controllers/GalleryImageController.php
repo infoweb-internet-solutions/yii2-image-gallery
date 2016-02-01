@@ -217,8 +217,8 @@ class GalleryImageController extends BaseImagesController
         $model->language = Yii::$app->language;
 
         Yii::$app->getSession()->setFlash('image-success', Yii::t('app', '{item} has been deleted', ['item' => $model->name]));
-
-        return $this->redirect(['index']);
+mail('ruben@infoweb.be', __FILE__ . ' => ' . __LINE__, 'delete');
+        //return $this->redirect(['index']);
     }
 
     /**
