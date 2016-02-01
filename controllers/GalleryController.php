@@ -282,7 +282,7 @@ class GalleryController extends Controller
         $model->delete();
 
         // Set flash message
-        Yii::$app->getSession()->setFlash('commission', Yii::t('app', '"{item}" has been deleted', ['item' => $model->name]));
+        Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been deleted', ['item' => $model->name]));
 
         return $this->redirect('index');
     }
