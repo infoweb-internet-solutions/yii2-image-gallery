@@ -8,7 +8,7 @@ use infoweb\cms\helpers\LanguageHelper;
 foreach (Yii::$app->params['languages'] as $languageId => $languageName) {
     $tabs[] = [
         'label' => $languageName . ((Yii::$app->getModule('gallery')->allowContentDuplication) ? Icon::show('exchange', ['class' => 'duplicateable-all-icon not-converted', 'data-language' => $languageId]) : ''),
-        'content' => $this->render('_default_language_tab', ['model' => $model->getTranslation($languageId), 'form' => $form]),
+        'content' => $this->render('_default_language_tab', ['model' => $model->translate($languageId), 'form' => $form]),
         'options' => ['class' => (LanguageHelper::isRtl($languageId)) ? 'rtl' : ''],
     ];
 }

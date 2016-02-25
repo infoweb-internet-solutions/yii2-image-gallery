@@ -2,10 +2,13 @@
 
 namespace infoweb\gallery\controllers;
 
+use infoweb\cms\helpers\ArrayHelper;
+use infoweb\cms\models\ImageLang;
 use rico\yii2images\controllers\ImagesController as BaseImagesController;
 
 use Yii;
 
+use yii\base\Model;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -123,9 +126,6 @@ class GalleryImageController extends BaseImagesController
 
         $gallery = Gallery::findOne(Yii::$app->session->get('gallery.gallery-id'));
 
-        // Load all the translations
-        $model->loadTranslations(array_keys(Yii::$app->params['languages']));
-
         if (Yii::$app->request->getIsPost()) {
 
             $post = Yii::$app->request->post();
@@ -136,23 +136,15 @@ class GalleryImageController extends BaseImagesController
                 // Populate the model with the POST data
                 $model->load($post);
 
-                // Populate the translation model for the primary language
-                $translationModel = $model->getTranslation(Yii::$app->language);
-                $translationModel->alt = $post['ImageLang'][Yii::$app->language]['alt'];
-                $translationModel->title = $post['ImageLang'][Yii::$app->language]['title'];
-                $translationModel->description = $post['ImageLang'][Yii::$app->language]['description'];
+                // Create an array of translation models and populate them
+                $translationModels = ArrayHelper::index($model->getTranslations()->all(), 'language');
+                Model::loadMultiple($translationModels, $post);
 
-                // Validate the translation model
-                $translationValidation = ActiveForm::validate($translationModel);
-                $correctedTranslationValidation = [];
-
-                // Correct the keys of the validation
-                foreach($translationValidation as $k => $v) {
-                    $correctedTranslationValidation[str_replace('imagelang-', "imagelang-{$translationModel->language}-", $k)] = $v;
-                }
-
-                // Validate the model and primary translation model
-                $response = array_merge(ActiveForm::validate($model), $correctedTranslationValidation);
+                // Validate the model and translation
+                $response = array_merge(
+                    ActiveForm::validate($model),
+                    ActiveForm::validateMultiple($translationModels)
+                );
 
                 // Return validation in JSON format
                 Yii::$app->response->format = Response::FORMAT_JSON;
@@ -160,36 +152,32 @@ class GalleryImageController extends BaseImagesController
 
                 // Normal request, save models
             } else {
-                // Wrap the everything in a database transaction
+                // Wrap everything in a database transaction
                 $transaction = Yii::$app->db->beginTransaction();
 
-                // Save the main model
-                /*
-                if (!$model->load($post) || !$model->save()) {
+                // Validate the main model
+                if (!$model->load($post)) {
                     return $this->render('update', [
                         'model' => $model,
-                        'gallery' => $gallery,
                     ]);
-                }*/
+                }
 
-                // Save the translation models
-                foreach (Yii::$app->params['languages'] as $languageId => $languageName) {
-                    $model->language = $languageId;
-                    $model->alt = $post['ImageLang'][$languageId]['alt'];
-                    $model->title = $post['ImageLang'][$languageId]['title'];
-                    $model->description = $post['ImageLang'][$languageId]['description'];
-
-                    if (!$model->saveTranslation()) {
-                        return $this->render('update', [
-                            'model' => $model,
-                            'gallery' => $gallery,
-                        ]);
+                // Add the translations
+                foreach (Yii::$app->request->post(StringHelper::basename(ImageLang::className()), []) as $language => $data) {
+                    foreach ($data as $attribute => $translation) {
+                        $model->translate($language)->$attribute = $translation;
                     }
                 }
+
+                if (!$model->save()) {
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
+                }
+
                 $transaction->commit();
 
                 // Set flash message
-                $model->language = Yii::$app->language;
                 Yii::$app->getSession()->setFlash('image-success', Yii::t('app', '{item} has been updated', ['item' => $model->name]));
 
                 return $this->redirect('index');

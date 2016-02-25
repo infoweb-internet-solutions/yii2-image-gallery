@@ -73,8 +73,8 @@ class Lang extends ActiveRecord
             // Types
             [['gallery_id', 'created_at', 'updated_at'], 'integer'],
             [['description'], 'string'],
-            [['language'], 'string', 'max' => 2],
-            [['name'], 'string', 'max' => 255],
+            [['language'], 'string', 'max' => 10],
+            [['name', 'slug'], 'string', 'max' => 255],
             // @todo Translate message
             [['gallery_id', 'language'], 'unique', 'targetAttribute' => ['gallery_id', 'language'], 'message' => 'The combination of Gallery ID and Language has already been taken.']
         ];

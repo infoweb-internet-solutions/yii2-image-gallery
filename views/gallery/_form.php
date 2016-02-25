@@ -47,10 +47,7 @@ GalleryAsset::register($this);
     ?>
 
     <div class="form-group buttons">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create & close') : Yii::t('app', 'Update & close'), ['class' => 'btn btn-default', 'name' => 'close']) ?>
-        <?= Html::submitButton(Yii::t('app', $model->isNewRecord ? 'Create & new' : 'Update & new'), ['class' => 'btn btn-default', 'name' => 'new']) ?>
-        <?= Html::a(Yii::t('app', 'Close'), 'index', ['class' => 'btn btn-danger']) ?>
+        <?= $this->render('@infoweb/cms/views/ui/formButtons', ['model' => $model]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

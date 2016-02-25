@@ -3,7 +3,7 @@
 namespace infoweb\gallery\models;
 
 use Yii;
-use dosamigos\translateable\TranslateableBehavior;
+use creocoder\translateable\TranslateableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
@@ -34,7 +34,7 @@ class Gallery extends ActiveRecord
     public function behaviors()
     {
         return [
-            'trans' => [
+            'translateable' => [
                 'class' => TranslateableBehavior::className(),
                 'translationAttributes' => [
                     'name',
@@ -93,7 +93,7 @@ class Gallery extends ActiveRecord
      */
     public function getTranslations()
     {
-        return $this->hasMany(Lang::className(), ['gallery_id' => 'id'])->from(['translations' => Lang::tableName()]);
+        return $this->hasMany(Lang::className(), ['gallery_id' => 'id']);
     }
 
     /**

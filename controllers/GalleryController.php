@@ -72,98 +72,31 @@ class GalleryController extends Controller
      */
     public function actionCreate()
     {
-        // Load languages
-        $languages = Yii::$app->params['languages'];
+        // Create the model with default values
+        $model = new Gallery([
+            'active' => 1,
+            'date' => date('U')
+        ]);
 
-        // Load the model
-        $model = new Gallery(['active' => 1, 'date' => date('U')]);
+        // The view params
+        $params = $this->getDefaultViewParams($model);
 
-        try {
+        if (Yii::$app->request->getIsPost()) {
 
-            if (Yii::$app->request->getIsPost()) {
+            $post = Yii::$app->request->post();
 
-                $post = Yii::$app->request->post();
+            // Ajax request, validate the models
+            if (Yii::$app->request->isAjax) {
 
-                // Ajax request, validate the models
-                if (Yii::$app->request->isAjax) {
+                return $this->validateModel($model, $post);
 
-                    // Populate the model with the POST data
-                    $model->load($post);
-
-                    // Create an array of translation models
-                    $translationModels = [];
-
-                    foreach ($languages as $languageId => $languageName) {
-                        $translationModels[$languageId] = new Lang(['language' => $languageId]);
-                    }
-
-                    // Populate the translation models
-                    Model::loadMultiple($translationModels, $post);
-
-                    // Validate the model and translation models
-                    $response = array_merge(ActiveForm::validate($model), ActiveForm::validateMultiple($translationModels));
-
-                    // Return validation in JSON format
-                    Yii::$app->response->format = Response::FORMAT_JSON;
-                    return $response;
-
-                    // Normal request, save models
-                } else {
-                    // Wrap the everything in a database transaction
-                    $transaction = Yii::$app->db->beginTransaction();
-
-                    // Save the main model
-                    if (!$model->load($post) || !$model->save()) {
-                        throw new Exception(Yii::t('app', 'Failed to save the node'));
-                    }
-
-                    // Save the translations
-                    foreach ($languages as $languageId => $languageName) {
-
-                        $data = $post['Lang'][$languageId];
-
-                        // Set the translation language and attributes
-                        $model->language    = $languageId;
-                        $model->name        = $data['name'];
-                        $model->description = $data['description'];
-
-
-                        if (!$model->saveTranslation()) {
-                            throw new Exception(Yii::t('app', 'Failed to save the translation'));
-                        }
-                    }
-
-                    $transaction->commit();
-
-                    // Switch back to the main language
-                    $model->language = Yii::$app->language;
-
-                    // Set flash message
-                    Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been created', ['item' => $model->name]));
-
-                    // Take appropriate action based on the pushed button
-                    if (isset($post['close'])) {
-                        return $this->redirect('index');
-                    } elseif (isset($post['new'])) {
-                        return $this->redirect(['create']);
-                    } else {
-                        return $this->redirect(['update', 'id' => $model->id]);
-                    }
-                }
+                // Normal request, save models
+            } else {
+                return $this->saveModel($model, $post);
             }
-        } catch (Exception $e) {
-
-            if (isset($transaction)) {
-                $transaction->rollBack();
-            }
-
-            // Set flash message
-            Yii::$app->getSession()->setFlash('gallery-error', $e->getMessage());
         }
 
-        return $this->render('create', [
-            'model'         => $model,
-        ]);
+        return $this->render('create', $params);
     }
 
     /**
@@ -174,95 +107,28 @@ class GalleryController extends Controller
      */
     public function actionUpdate($id)
     {
-        // Load languages
-        $languages = Yii::$app->params['languages'];
-
         // Load the model
         $model = $this->findModel($id);
 
-        try {
+        // The view params
+        $params = $this->getDefaultViewParams($model);
 
-            if (Yii::$app->request->getIsPost()) {
+        if (Yii::$app->request->getIsPost()) {
 
-                $post = Yii::$app->request->post();
+            $post = Yii::$app->request->post();
 
-                // Ajax request, validate the models
-                if (Yii::$app->request->isAjax) {
+            // Ajax request, validate the models
+            if (Yii::$app->request->isAjax) {
 
-                    // Populate the model with the POST data
-                    $model->load($post);
+                return $this->validateModel($model, $post);
 
-                    // Create an array of translation models
-                    $translationModels = [];
-
-                    foreach ($languages as $languageId => $languageName) {
-                        $translationModels[$languageId] = $model->getTranslation($languageId);
-                    }
-
-                    // Populate the translation models
-                    Model::loadMultiple($translationModels, $post);
-
-                    // Validate the model and translation models
-                    $response = array_merge(ActiveForm::validate($model), ActiveForm::validateMultiple($translationModels));
-
-                    // Return validation in JSON format
-                    Yii::$app->response->format = Response::FORMAT_JSON;
-                    return $response;
-
-                    // Normal request, save models
-                } else {
-                    // Wrap the everything in a database transaction
-                    $transaction = Yii::$app->db->beginTransaction();
-
-                    // Save the main model
-                    if (!$model->load($post) || !$model->save()) {
-                        throw new Exception(Yii::t('app', 'Failed to update the node'));
-                    }
-
-                    // Save the translation models
-                    foreach ($languages as $languageId => $languageName) {
-
-                        $data = $post['Lang'][$languageId];
-
-                        $model->language    = $languageId;
-                        $model->name        = $data['name'];
-                        $model->description = $data['description'];
-
-                        if (!$model->saveTranslation()) {
-                            throw new Exception(Yii::t('app', 'Failed to update the translation'));
-                        }
-                    }
-
-                    $transaction->commit();
-
-                    // Switch back to the main language
-                    $model->language = Yii::$app->language;
-
-                    // Set flash message
-                    Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been updated', ['item' => $model->name]));
-
-                    // Take appropriate action based on the pushed button
-                    if (isset($post['close'])) {
-                        return $this->redirect('index');
-                    } elseif (isset($post['new'])) {
-                        return $this->redirect(['create']);
-                    } else {
-                        return $this->redirect(['update', 'id' => $model->id]);
-                    }
-                }
+                // Normal request, save models
+            } else {
+                return $this->saveModel($model, $post);
             }
-        } catch (Exception $e) {
-
-            if (isset($transaction)) {
-                $transaction->rollBack();
-            }
-            // Set flash message
-            Yii::$app->getSession()->setFlash('gallery-error', $e->getMessage());
         }
 
-        return $this->render('update', [
-            'model'         => $model,
-        ]);
+        return $this->render('update', $params);
     }
 
     /**
@@ -274,15 +140,30 @@ class GalleryController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
+        $name = $model->name;
 
-        // Remove all images first
-        $model->removeImages();
+        try {
 
-        // Remove model
-        $model->delete();
+            $transaction = Yii::$app->db->beginTransaction();
+
+            // Remove all images first
+            $model->removeImages();
+
+            if (!$model->delete()) {
+                throw new Exception(Yii::t('app', 'Error while deleting the node'));
+            }
+
+            $transaction->commit();
+
+        } catch (Exception $e) {
+            // Set flash message
+            Yii::$app->getSession()->setFlash('news-error', $e->getMessage());
+
+            return $this->redirect(['index']);
+        }
 
         // Set flash message
-        Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been deleted', ['item' => $model->name]));
+        Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been deleted', ['item' => $name]));
 
         return $this->redirect('index');
     }
@@ -314,6 +195,106 @@ class GalleryController extends Controller
         $model->active = ($model->active == 1) ? 0 : 1;
 
         return $model->save();
+    }
+
+    /**
+     * Returns an array of the default params that are passed to a view
+     *
+     * @param News $model The model that has to be passed to the view
+     * @return array
+     */
+    protected function getDefaultViewParams($model = null)
+    {
+        return [
+            'model'  => $model,
+        ];
+    }
+
+    /**
+     * Performs validation on the provided model and $_POST data
+     *
+     * @param \infoweb\pages\models\Page $model The page model
+     * @param array $post The $_POST data
+     * @return array
+     */
+    protected function validateModel($model, $post)
+    {
+        $languages = Yii::$app->params['languages'];
+
+        // Populate the model with the POST data
+        $model->load($post);
+
+        // Create an array of translation models and populate them
+        $translationModels = [];
+        // Insert
+        if ($model->isNewRecord) {
+            foreach ($languages as $languageId => $languageName) {
+                $translationModels[$languageId] = new Lang(['language' => $languageId]);
+            }
+            // Update
+        } else {
+            $translationModels = ArrayHelper::index($model->getTranslations()->all(), 'language');
+        }
+        Model::loadMultiple($translationModels, $post);
+
+        // Validate the model and translation
+        $response = array_merge(
+            ActiveForm::validate($model),
+            ActiveForm::validateMultiple($translationModels)
+        );
+
+        // Return validation in JSON format
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return $response;
+    }
+
+    protected function saveModel($model, $post)
+    {
+        // Wrap everything in a database transaction
+        $transaction = Yii::$app->db->beginTransaction();
+
+        // Get the params
+        $params = $this->getDefaultViewParams($model);
+
+        // Validate the main model
+        if (!$model->load($post)) {
+            return $this->render($this->action->id, $params);
+        }
+
+        // Add the translations
+        foreach (Yii::$app->request->post('Lang', []) as $language => $data) {
+            foreach ($data as $attribute => $translation) {
+                $model->translate($language)->$attribute = $translation;
+            }
+        }
+
+        // Save the main model
+        if (!$model->save()) {
+            return $this->render($this->action->id, $params);
+        }
+
+        $transaction->commit();
+
+        // Set flash message
+        if ($this->action->id == 'create') {
+            Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been created', ['item' => $model->name]));
+        } else {
+            Yii::$app->getSession()->setFlash('gallery', Yii::t('app', '"{item}" has been updated', ['item' => $model->name]));
+        }
+
+        // Take appropriate action based on the pushed button
+        if (isset($post['save-close'])) {
+            // No referrer
+            if (Yii::$app->request->get('referrer') != 'menu-items')
+                return $this->redirect(['index']);
+            else
+                return $this->redirect(['/menu/menu-item/index']);
+        } elseif (isset($post['save-add'])) {
+            return $this->redirect(['create']);
+        } else {
+            return $this->redirect(['update', 'id' => $model->id]);
+        }
     }
 }
 

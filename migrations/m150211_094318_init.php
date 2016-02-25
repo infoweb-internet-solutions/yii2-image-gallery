@@ -26,7 +26,7 @@ class m150211_094318_init extends Migration
             'thumbnail_width'  => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'250\'',
             'thumbnail_height' => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'150\'',
             'active'           => 'TINYINT(3) UNSIGNED NOT NULL DEFAULT \'1\'',
-            'position'         => Schema::TYPE_INTEGER . ' UNSIGNED NOT',
+            'position'         => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
             'created_at'       => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
             'updated_at'       => Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL',
         ], $tableOptions);
